@@ -11,7 +11,7 @@ import Vulkan
 #endif
 
 #if os(macOS)
-    let instance = try OwnedVulkanInstance(
+    let instance = try VulkanOwnedInstance(
         flags: [.enumeratePortability],
         enabledLayers: validationLayers,
         enabledExtensions: [VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME]

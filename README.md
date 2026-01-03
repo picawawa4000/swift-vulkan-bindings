@@ -16,4 +16,4 @@ This library exposes wrappers in the module `VulkanBindings`. The Vulkan C api i
 
 ## Currently wrapped types
 
--  
+See `NAMES.md` for the complete list of wrapped functions and types, along with the name of the function or class that wraps them.

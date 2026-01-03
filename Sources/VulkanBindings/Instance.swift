@@ -26,12 +26,12 @@ extension VulkanInstance {
 
 /// Represents an instance of Vulkan. Should be created via `OwnedVulkanInstance.getUnownedHandle()`, rather than instantiated directly.
 /// Maps to `VkInstance`.
-struct UnownedVulkanInstance: VulkanInstance {
+struct VulkanUnownedInstance: VulkanInstance {
     let instance: VkInstance
 }
 
 /// Represents a reference to a Vulkan instance.
-final class OwnedVulkanInstance: VulkanInstance {
+final class VulkanOwnedInstance: VulkanInstance {
     let instance: VkInstance
 
     /// Only use if you have a pre-existing instance of Vulkan that you want to create an owner for.
@@ -128,7 +128,7 @@ final class OwnedVulkanInstance: VulkanInstance {
     /// Get a non-owning handle to this instance.
     /// - Returns: A non-owning handle to this instance.
     func getUnownedHandle() -> VulkanInstance {
-        return UnownedVulkanInstance(instance: self.instance)
+        return VulkanUnownedInstance(instance: self.instance)
     }
 }
 

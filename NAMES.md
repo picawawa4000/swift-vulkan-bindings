@@ -1,0 +1,249 @@
+# Name conversion tables (Vulkan -> Swift)
+
+Tables are provided in alphabetical order, using the following format:
+
+- `Vulkan function/struct/flag name` -> `Swift method/struct/flag name`
+
+All functions, structs, etc. not listed here (including those with `2`, `KHR`, etc. at the ends of their names) are unwrapped and must be used raw.
+
+This document is not to be interpreted as a checklist of types that must be wrapped (although many of them will end up having wrappers because only the most convenient ones are listed here), but rather as a reference for those with backgrounds in Vulkan or following tutorials utilising the C API to quickly translate between the names used by the Vulkan C API and those used by this library.
+
+## Functions
+
+- `vkAllocateCommandBuffers` -> unwrapped
+- `vkAllocateDescriptorSets` -> unwrapped
+- `vkAllocateMemory` -> unwrapped
+- `vkBeginCommandBuffer` -> unwrapped
+- `vkBindBufferMemory` -> unwrapped
+- `vkBindImageMemory` -> unwrapped
+- `vkCmdBeginQuery` -> unwrapped
+- `vkCmdBeginRendering` -> unwrapped
+- `vkCmdBeginRenderPass` -> unwrapped
+- `vkCmdBindDescriptorSets` -> unwrapped
+- `vkCmdBindIndexBuffer` -> unwrapped
+- `vkCmdBindPipeline` -> unwrapped
+- `vkCmdBindVertexBuffers` -> unwrapped
+- `vkCmdBlitImage` -> unwrapped
+- `vkCmdClearAttachments` -> unwrapped
+- `vkCmdClearColorImage` -> unwrapped
+- `vkCmdClearDepthStencilImage` -> unwrapped
+- `vkCmdCopyBuffer` -> unwrapped
+- `vkCmdCopyBufferToImage` -> unwrapped
+- `vkCmdCopyImage` -> unwrapped
+- `vkCmdCopyImageToBuffer` -> unwrapped
+- `vkCmdCopyQueryPoolResults` -> unwrapped
+- `vkCmdDispatch` -> unwrapped
+- `vkCmdDispatchBase` -> unwrapped
+- `vkCmdDispatchIndirect` -> unwrapped
+- `vkCmdDraw` -> unwrapped
+- `vkCmdDrawIndexed` -> unwrapped
+- `vkCmdDrawIndexedIndirect` -> unwrapped
+- `vkCmdDrawIndexedIndirectCount` -> unwrapped
+- `vkCmdDrawIndirect` -> unwrapped
+- `vkCmdDrawIndirectCount` -> unwrapped
+- `vkCmdEndQuery` -> unwrapped
+- `vkCmdEndRendering` -> unwrapped
+- `vkCmdEndRenderPass` -> unwrapped
+- `vkCmdExecuteCommands` -> unwrapped
+- `vkCmdFillBuffer` -> unwrapped
+- `vkCmdNextSubpass` -> unwrapped
+- `vkCmdPipelineBarrier` -> unwrapped
+- `vkCmdPushConstants` -> unwrapped
+- `vkCmdPushDescriptorSet` -> unwrapped
+- `vkCmdPushDescriptorSetWithTemplate` -> unwrapped
+- `vkCmdResetEvent` -> unwrapped
+- `vkCmdResetQueryPool` -> unwrapped
+- `vkCmdResolveImage` -> unwrapped
+- `vkCmdSetBlendConstants` -> unwrapped
+- `vkCmdSetCullMode` -> unwrapped
+- `vkCmdSetDepthBias` -> unwrapped
+- `vkCmdSetDepthBiasEnable` -> unwrapped
+- `vkCmdSetDepthBounds` -> unwrapped
+- `vkCmdSetDepthBoundsTestEnable` -> unwrapped
+- `vkCmdSetDepthCompareOp` -> unwrapped
+- `vkCmdSetDepthTestEnable` -> unwrapped
+- `vkCmdSetDepthWriteEnable` -> unwrapped
+- `vkCmdSetDeviceMask` -> unwrapped
+- `vkCmdSetEvent` -> unwrapped
+- `vkCmdSetFrontFace` -> unwrapped
+- `vkCmdSetLineStipple` -> unwrapped
+- `vkCmdSetLineWidth` -> unwrapped
+- `vkCmdSetPrimitiveRestartEnable` -> unwrapped
+- `vkCmdSetPrimitiveTopology` -> unwrapped
+- `vkCmdSetRasterizerDiscardEnable` -> unwrapped
+- `vkCmdSetRenderingAttachmentLocations` -> unwrapped
+- `vkCmdSetRenderingInputAttachmentIndices` -> unwrapped
+- `vkCmdSetScissor` -> unwrapped
+- `vkCmdSetScissorWithCount` -> unwrapped
+- `vkCmdSetStencilCompareMask` -> unwrapped
+- `vkCmdSetStencilOp` -> unwrapped
+- `vkCmdSetStencilReference` -> unwrapped
+- `vkCmdSetStencilTestEnable` -> unwrapped
+- `vkCmdSetStencilWriteMask` -> unwrapped
+- `vkCmdSetViewport` -> unwrapped
+- `vkCmdSetViewportWithCount` -> unwrapped
+- `vkCmdUpdateBuffer` -> unwrapped
+- `vkCmdWaitEvents` -> unwrapped
+- `vkCmdWriteTimestamp` -> unwrapped
+- `vkCopyImageToImage` -> unwrapped
+- `vkCopyImageToMemory` -> unwrapped
+- `vkCopyMemoryToImage` -> unwrapped
+- `vkCreateBuffer` -> unwrapped
+- `vkCreateBufferView` -> unwrapped
+- `vkCreateCommandPool` -> unwrapped
+- `vkCreateComputePipelines` -> unwrapped
+- `vkCreateDescriptorPool` -> unwrapped
+- `vkCreateDescriptorSetLayout` -> unwrapped
+- `vkCreateDescriptorUpdateTemplate` -> unwrapped
+- `vkCreateDevice` -> unwrapped
+- `vkCreateEvent` -> unwrapped
+- `vkCreateFence` -> unwrapped
+- `vkCreateFramebuffer` -> unwrapped
+- `vkCreateGraphicsPipelines` -> unwrapped
+- `vkCreateImage` -> unwrapped
+- `vkCreateImageView` -> unwrapped
+- `vkCreateInstance` -> `VulkanOwnedInstance.init(flags:enabledLayers:enabledExtensions:)`, `VulkanOwnedInstance.init(flags:enabledLayers:enabledExtensions:appName:appVersion:engineName:engineVersion:apiVersion:)`
+- `vkCreatePipelineCache` -> unwrapped
+- `vkCreatePipelineLayout` -> unwrapped
+- `vkCreatePrivateDataSlot` -> unwrapped
+- `vkCreateQueryPool` -> unwrapped
+- `vkCreateRenderPass` -> unwrapped
+- `vkCreateSampler` -> unwrapped
+- `vkCreateSamplerYcbcrConversion` -> unwrapped
+- `vkCreateSemaphore` -> unwrapped
+- `vkCreateShaderModule` -> unwrapped
+- `vkDestroyBuffer` -> unwrapped
+- `vkDestroyBufferView` -> unwrapped
+- `vkDestroyCommandPool` -> unwrapped
+- `vkDestroyDescriptorPool` -> unwrapped
+- `vkDestroyDescriptorSetLayout` -> unwrapped
+- `vkDestroyDescriptorUpdateTemplate` -> unwrapped
+- `vkDestroyDevice` -> unwrapped
+- `vkDestroyEvent` -> unwrapped
+- `vkDestroyFence` -> unwrapped
+- `vkDestroyFramebuffer` -> unwrapped
+- `vkDestroyImage` -> unwrapped
+- `vkDestroyImageView` -> unwrapped
+- `vkDestroyInstance` -> `VulkanOwnedInstance.deinit`
+- `vkDestroyPipeline` -> unwrapped
+- `vkDestroyPipelineCache` -> unwrapped
+- `vkDestroyPipelineLayout` -> unwrapped
+- `vkDestroyPrivateDataSlot` -> unwrapped
+- `vkDestroyQueryPool` -> unwrapped
+- `vkDestroyRenderPass` -> unwrapped
+- `vkDestroySampler` -> unwrapped
+- `vkDestroySamplerYcbcrConversion` -> unwrapped
+- `vkDestroySemaphore` -> unwrapped
+- `vkDestroyShaderModule` -> unwrapped
+- `vkDeviceWaitIdle` -> unwrapped
+- `vkEndCommandBuffer` -> unwrapped
+- `vkEnumerateDeviceExtensionProperties` -> unwrapped
+- `vkEnumerateDeviceLayerProperties` -> unwrapped
+- `vkEnumerateInstanceExtensionProperties` -> `VulkanFreeFunctions.enumerateInstanceExtensionProperties(forLayer:)`
+- `vkEnumerateInstanceLayerProperties` -> unwrapped
+- `vkEnumerateInstanceVersion` -> unwrapped
+- `vkEnumeratePhysicalDeviceGroups` -> unwrapped
+- `vkEnumeratePhysicalDevices` -> `VulkanInstance.enumeratePhysicalDevices()`
+- `vkFlushMappedMemoryRanges` -> unwrapped
+- `vkFreeCommandBuffers` -> unwrapped
+- `vkFreeDescriptorSets` -> unwrapped
+- `vkFreeMemory` -> unwrapped
+- `vkGetBufferDeviceAddress` -> unwrapped
+- `vkGetBufferMemoryRequirements` -> unwrapped
+- `vkGetBufferOpaqueCaptureAddress` -> unwrapped
+- `vkGetDescriptorSetLayoutSupport` -> unwrapped
+- `vkDeviceBufferMemoryRequirements` -> unwrapped
+- `vkGetDeviceGroupPeerMemoryFeatures` -> unwrapped
+- `vkGetDeviceImageMemoryRequirements` -> unwrapped
+- `vkGetDeviceImageSparseMemoryRequirements` -> unwrapped
+- `vkGetDeviceImageSubresourceLayout` -> unwrapped
+- `vkGetDeviceMemoryCommitment` -> unwrapped
+- `vkGetDeviceMemoryOpaqueCaptureAddress` -> unwrapped
+- `vkGetDeviceProcAddr` -> unwrapped
+- `vkGetDeviceQueue` -> unwrapped
+- `vkGetEventStatus` -> unwrapped
+- `vkGetFenceStatus` -> unwrapped
+- `vkGetImageMemoryRequirements` -> unwrapped
+- `vkGetImageSparseMemoryRequirements` -> unwrapped
+- `vkGetImageSubresourceLayout` -> unwrapped
+- `vkGetInstanceProcAddr` -> unwrapped
+- `vkGetPhysicalDeviceExternalBufferProperties` -> unwrapped
+- `vkGetPhysicalDeviceExternalFenceProperties` -> unwrapped
+- `vkGetPhysicalDeviceExternalSemaphoreProperties` -> unwrapped
+- `vkGetPhysicalDeviceFeatures` -> `VulkanPhysicalDevice.getFeatures()`
+- `vkGetPhysicalDeviceFormatProperties` -> unwrapped
+- `vkGetPhysicalDeviceImageFormatProperties` -> unwrapped
+- `vkGetPhysicalDeviceMemoryProperties` -> unwrapped
+- `vkGetPhysicalDeviceProperties` -> `VulkanPhysicalDevice.getProperties()`
+- `vkGetPhysicalDeviceQueueFamilyProperties` -> unwrapped
+- `vkGetPhysicalDeviceSparseImageFormatProperties` -> unwrapped
+- `vkGetPhysicalDeviceToolProperties` -> unwrapped
+- `vkGetPipelineCacheData` -> unwrapped
+- `vkGetPrivateData` -> unwrapped
+- `vkGetQueryPoolResults` -> unwrapped
+- `vkGetRenderAreaGranularity` -> unwrapped
+- `vkGetRenderingAreaGranularity` -> unwrapped
+- `vkGetSemaphoreCounterValue` -> unwrapped
+- `vkInvalidateMappedMemoryRanges` -> unwrapped
+- `vkMapMemory` -> unwrapped
+- `vkMergePipelineCaches` -> unwrapped
+- `vkQueueBindSparse` -> unwrapped
+- `vkQueueSubmit` -> unwrapped
+- `vkQueueWaitIdle` -> unwrapped
+- `vkResetCommandBuffer` -> unwrapped
+- `vkResetCommandPool` -> unwrapped
+- `vkResetDescriptorPool` -> unwrapped
+- `vkResetEvent` -> unwrapped
+- `vkResetFences` -> unwrapped
+- `vkResetQueryPool` -> unwrapped
+- `vkSetEvent` -> unwrapped
+- `vkSetPrivateData` -> unwrapped
+- `vkSignalSemaphore` -> unwrapped
+- `vkTransitionImageLayout` -> unwrapped
+- `vkTrimCommandPool` -> unwrapped
+- `vkUnmapMemory` -> unwrapped
+- `vkUpdateDescriptorSets` -> unwrapped
+- `vkUpdateDescriptorSetWithTemplate` -> unwrapped
+- `vkWaitForFences` -> unwrapped
+- `vkWaitSemaphores` -> unwrapped
+
+## Structs
+
+It is unlikely that any structs not on the list below will need to be wrapped, as they are mostly value types with no methods that can be used raw.
+
+### Object Handles
+
+- `VkBuffer` -> unwrapped
+- `VkBufferView` -> unwrapped
+- `VkCommandBuffer` -> unwrapped
+- `VkCommandPool` -> unwrapped
+- `VkDescriptorPool` -> unwrapped
+- `VkDescriptorSet` -> unwrapped
+- `VkDescriptorSetLayout` -> unwrapped
+- `VkDescriptorUpdateTemplate` -> unwrapped
+- `VkDevice` -> unwrapped
+- `VkDeviceMemory` -> unwrapped
+- `VkEvent` -> unwrapped
+- `VkFence` -> unwrapped
+- `VkFramebuffer` -> unwrapped
+- `VkImage` -> unwrapped
+- `VkImageView` -> unwrapped
+- `VkInstance` -> `VulkanInstance` (`VulkanOwnedInstance`, `VulkanUnownedInstance`)
+- `VkPhysicalDevice` -> `VulkanPhysicalDevice`
+- `VkPipeline` -> unwrapped
+- `VkPipelineCache` -> unwrapped
+- `VkPipelineLayout` -> unwrapped
+- `VkPrivateDataSlot` -> unwrapped
+- `VkQueryPool` -> unwrapped
+- `VkQueue` -> unwrapped
+- `VkRenderPass` -> unwrapped
+- `VkSampler` -> unwrapped
+- `VkSamplerYcbcrConversion` -> unwrapped
+- `VkSemaphore` -> unwrapped
+- `VkShaderModule` -> unwrapped
+
+## Flags
+
+Flags are wrapped using types that conform to `OptionSet`.
+
+- `VkInstanceCreateFlags` -> `VulkanInstanceCreateFlags`
