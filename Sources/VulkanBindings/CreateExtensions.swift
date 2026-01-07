@@ -1,6 +1,6 @@
 import Vulkan
 
-extension VkInstanceCreateInfo {
+public extension VkInstanceCreateInfo {
     static func create(
         flags: VkInstanceCreateFlags,
         pApplicationInfo: UnsafePointer<VkApplicationInfo>!,
@@ -22,7 +22,7 @@ extension VkInstanceCreateInfo {
     }
 }
 
-extension VkApplicationInfo {
+public extension VkApplicationInfo {
     /// Creates a new VulkanApplicationInfo.
     /// - Parameters:
     ///   - pApplicationName: The name of this application.

@@ -1,11 +1,11 @@
 import Foundation
 import Vulkan
 
-protocol VulkanInstance {
+public protocol VulkanInstance {
     var instance: VkInstance { get }
 }
 
-extension VulkanInstance {
+public extension VulkanInstance {
     /// Get a list of all Vulkan-supporting physical devices.
     /// - Throws: Any error raised by Vulkan.
     /// - Returns: A list of all Vulkan-supporting physical devices.
@@ -26,18 +26,18 @@ extension VulkanInstance {
 
 /// Represents an instance of Vulkan. Should be created via `OwnedVulkanInstance.getUnownedHandle()`, rather than instantiated directly.
 /// Maps to `VkInstance`.
-struct VulkanUnownedInstance: VulkanInstance {
-    let instance: VkInstance
+public struct VulkanUnownedInstance: VulkanInstance {
+    public let instance: VkInstance
 }
 
 /// Represents a reference to a Vulkan instance.
-final class VulkanOwnedInstance: VulkanInstance {
-    let instance: VkInstance
+public final class VulkanOwnedInstance: VulkanInstance {
+    public let instance: VkInstance
 
     /// Only use if you have a pre-existing instance of Vulkan that you want to create an owner for.
     /// Prefer `UnownedVulkanInstance` for this purpose to avoid sketchy ownership semantics.
     /// - Parameter instance: The instance to own.
-    init(with instance: VkInstance) {
+    public init(with instance: VkInstance) {
         self.instance = instance
     }
 
@@ -47,7 +47,7 @@ final class VulkanOwnedInstance: VulkanInstance {
     ///   - enabledLayers: The enabled validation layers.
     ///   - enabledExtensions: The enabled extensions.
     /// - Throws: Any error caused by instance initialisation.
-    init(flags: VulkanInstanceCreateFlags, enabledLayers: [String], enabledExtensions: [String]) throws {
+    public init(flags: VulkanInstanceCreateFlags, enabledLayers: [String], enabledExtensions: [String]) throws {
         var instance: VkInstance?
         try withCStringsPointerAndSize(enabledLayers) { layerPtr, layerCount in
             try withCStringsPointerAndSize(enabledExtensions) { extensionPtr, extensionCount in
@@ -79,7 +79,7 @@ final class VulkanOwnedInstance: VulkanInstance {
     ///   - engineVersion: The version of the engine used by this application. Defaults to 1.
     ///   - apiVersion: The maximum version of the Vulkan API used by this application. Defaults to `UInt32.max`.
     /// - Note: If using Vulkan 1.0, `apiVersion` must be set to 1.
-    init(
+    public init(
         flags: VulkanInstanceCreateFlags,
         enabledLayers: [String],
         enabledExtensions: [String],
@@ -127,14 +127,18 @@ final class VulkanOwnedInstance: VulkanInstance {
 
     /// Get a non-owning handle to this instance.
     /// - Returns: A non-owning handle to this instance.
-    func getUnownedHandle() -> VulkanInstance {
+    public func getUnownedHandle() -> VulkanInstance {
         return VulkanUnownedInstance(instance: self.instance)
     }
 }
 
 /// Loosely maps to `VkInstanceCreateFlags`.
-struct VulkanInstanceCreateFlags: OptionSet {
-    let rawValue: VkInstanceCreateFlags
+public struct VulkanInstanceCreateFlags: OptionSet, Sendable {
+    public let rawValue: VkInstanceCreateFlags
 
-    static let enumeratePortability = VulkanInstanceCreateFlags(rawValue: VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR.rawValue)
+    public init(rawValue: VkInstanceCreateFlags) {
+        self.rawValue = rawValue
+    }
+
+    public static let enumeratePortability = VulkanInstanceCreateFlags(rawValue: VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR.rawValue)
 }
