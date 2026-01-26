@@ -1,6 +1,15 @@
 import Vulkan
 
 public extension VkInstanceCreateInfo {
+    /// Creates a new `VkInstanceCreateInfo`.
+    /// - Parameters:
+    ///   - flags: The flags to use to create the instance.
+    ///   - pApplicationInfo: A pointer to info about the application. May be null.
+    ///   - enabledLayerCount: The number of enabled layers (i.e. the size of the array at `ppEnabledLayerNames`).
+    ///   - ppEnabledLayerNames: The enabled layers, as a pointer to an array of C strings.
+    ///   - enabledExtensionCount: The number of enabled extensions.
+    ///   - ppEnabledExtensionNames: The enabled extensions, with the same format as `ppEnabledLayerNames`.
+    /// - Returns: A `VkInstanceCreateInfo` structure encoding all of the above information.
     static func create(
         flags: VkInstanceCreateFlags,
         pApplicationInfo: UnsafePointer<VkApplicationInfo>!,
@@ -23,14 +32,14 @@ public extension VkInstanceCreateInfo {
 }
 
 public extension VkApplicationInfo {
-    /// Creates a new VulkanApplicationInfo.
+    /// Creates a new `VkApplicationInfo`.
     /// - Parameters:
     ///   - pApplicationName: The name of this application.
     ///   - applicationVersion: The version of this application.
     ///   - pEngineName: The name of the engine used by this application.
     ///   - engineVersion: The version of the engine used by this application.
     ///   - apiVersion: The maximum version of the Vulkan API used by this application.
-    /// - Returns: A `VulkanApplicationInfo` structure encoding all of the above information.
+    /// - Returns: A `VkApplicationInfo` structure encoding all of the above information.
     static func create(
         pApplicationName: UnsafePointer<CChar>,
         applicationVersion: UInt32,

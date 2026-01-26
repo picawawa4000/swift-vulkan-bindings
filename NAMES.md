@@ -175,7 +175,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkGetPhysicalDeviceImageFormatProperties` -> unwrapped
 - `vkGetPhysicalDeviceMemoryProperties` -> unwrapped
 - `vkGetPhysicalDeviceProperties` -> `VulkanPhysicalDevice.getProperties()`
-- `vkGetPhysicalDeviceQueueFamilyProperties` -> unwrapped
+- `vkGetPhysicalDeviceQueueFamilyProperties` -> `VulkanPhysicalDevice.getQueueFamilyProperties()`
 - `vkGetPhysicalDeviceSparseImageFormatProperties` -> unwrapped
 - `vkGetPhysicalDeviceToolProperties` -> unwrapped
 - `vkGetPipelineCacheData` -> unwrapped
@@ -221,7 +221,7 @@ It is unlikely that any structs not on the list below will need to be wrapped, a
 - `VkDescriptorSet` -> unwrapped
 - `VkDescriptorSetLayout` -> unwrapped
 - `VkDescriptorUpdateTemplate` -> unwrapped
-- `VkDevice` -> unwrapped
+- `VkDevice` -> `VulkanDevice` (`VulkanOwnedDevice`, `VulkanUnownedDevice`)
 - `VkDeviceMemory` -> unwrapped
 - `VkEvent` -> unwrapped
 - `VkFence` -> unwrapped

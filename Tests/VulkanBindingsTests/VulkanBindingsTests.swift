@@ -10,6 +10,9 @@ import Vulkan
     let validationLayers = []
 #endif
 
+    // Create an instance.
+    // Since this is Swift (and therefore more likely to run on a Mac),
+    // this `if` macro is very important.
 #if os(macOS)
     let instance = try VulkanOwnedInstance(
         flags: [.enumeratePortability],
@@ -23,4 +26,19 @@ import Vulkan
         enabledExtensions: []
     )
 #endif
+
+    // Get the physical devices.
+    let physicalDevices = try instance.enumeratePhysicalDevices()
+    print("Found \(physicalDevices.count) physical devices")
+
+    // It doesn't take that many steps to turn this loop into a suitability check.
+    for physicalDevice in physicalDevices {
+        let properties = physicalDevice.getProperties()
+        // Prints as a tuple of ints because I don't know how to convert this into a string
+        // Python `chr()` for the win, I guess
+        print(" - \(properties.deviceName)")
+
+        let features = physicalDevice.getFeatures()
+        print("   - Tessellation shader support: \(features.tessellationShader)")
+    }
 }
