@@ -30,6 +30,34 @@ public struct VulkanPhysicalDevice {
         vkGetPhysicalDeviceQueueFamilyProperties(self.handle, &count, &queueFamilyProperties)
         return queueFamilyProperties
     }
+
+    public func enumerateDeviceExtensionProperties(layerName: String? = nil) -> [VkExtensionProperties] {
+        var count: UInt32 = 0
+        if let name = layerName {
+            _ = name.withCString { cStr in
+                vkEnumerateDeviceExtensionProperties(self.handle, cStr, &count, nil)
+            }
+        } else {
+            vkEnumerateDeviceExtensionProperties(self.handle, nil, &count, nil)
+        }
+
+        if count == 0 { return [] }
+
+        var properties = Array<VkExtensionProperties>(repeating: VkExtensionProperties(), count: Int(count))
+        if let name = layerName {
+            _ = name.withCString { cStr in
+                properties.withUnsafeMutableBufferPointer { buffer in
+                    vkEnumerateDeviceExtensionProperties(self.handle, cStr, &count, buffer.baseAddress)
+                }
+            }
+        } else {
+            _ = properties.withUnsafeMutableBufferPointer { buffer in
+                vkEnumerateDeviceExtensionProperties(self.handle, nil, &count, buffer.baseAddress)
+            }
+        }
+
+        return properties
+    }
 }
 
 public protocol VulkanDevice {

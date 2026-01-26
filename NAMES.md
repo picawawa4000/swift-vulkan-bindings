@@ -137,7 +137,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkDestroyShaderModule` -> unwrapped
 - `vkDeviceWaitIdle` -> unwrapped
 - `vkEndCommandBuffer` -> unwrapped
-- `vkEnumerateDeviceExtensionProperties` -> unwrapped
+- `vkEnumerateDeviceExtensionProperties` -> `VulkanPhysicalDevice.enumerateDeviceExtensionProperties()`
 - `vkEnumerateDeviceLayerProperties` -> unwrapped
 - `vkEnumerateInstanceExtensionProperties` -> `VulkanFreeFunctions.enumerateInstanceExtensionProperties(forLayer:)`
 - `vkEnumerateInstanceLayerProperties` -> unwrapped
