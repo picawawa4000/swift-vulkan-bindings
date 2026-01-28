@@ -58,3 +58,65 @@ public extension VkApplicationInfo {
         )
     }
 }
+
+public extension VkDeviceQueueCreateInfo {
+    /// Creates a new `VkDeviceQueueCreateInfo`.
+    /// - Parameters:
+    ///   - flags: The flags to use to create the queue.
+    ///   - queueFamilyIndex: The queue family index.
+    ///   - queueCount: The number of queues to create (must match the count of `pQueuePriorities`).
+    ///   - pQueuePriorities: A pointer to an array of queue priorities.
+    /// - Returns: A `VkDeviceQueueCreateInfo` structure encoding all of the above information.
+    static func create(
+        flags: VkDeviceQueueCreateFlags,
+        queueFamilyIndex: UInt32,
+        queueCount: UInt32,
+        pQueuePriorities: UnsafePointer<Float>
+    ) -> VkDeviceQueueCreateInfo {
+        return VkDeviceQueueCreateInfo(
+            sType: VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
+            pNext: nil,
+            flags: flags,
+            queueFamilyIndex: queueFamilyIndex,
+            queueCount: queueCount,
+            pQueuePriorities: pQueuePriorities
+        )
+    }
+}
+
+public extension VkDeviceCreateInfo {
+    /// Creates a new `VkDeviceCreateInfo`.
+    /// - Parameters:
+    ///   - flags: The flags to use to create the device.
+    ///   - queueCreateInfoCount: The number of queue create infos.
+    ///   - pQueueCreateInfos: A pointer to an array of queue create infos.
+    ///   - enabledLayerCount: The number of enabled layers.
+    ///   - ppEnabledLayerNames: The enabled layer names as C strings.
+    ///   - enabledExtensionCount: The number of enabled extensions.
+    ///   - ppEnabledExtensionNames: The enabled extension names as C strings.
+    ///   - pEnabledFeatures: The enabled physical device features. May be null.
+    /// - Returns: A `VkDeviceCreateInfo` structure encoding all of the above information.
+    static func create(
+        flags: VkDeviceCreateFlags,
+        queueCreateInfoCount: UInt32,
+        pQueueCreateInfos: UnsafePointer<VkDeviceQueueCreateInfo>?,
+        enabledLayerCount: UInt32,
+        ppEnabledLayerNames: UnsafePointer<UnsafePointer<CChar>?>!,
+        enabledExtensionCount: UInt32,
+        ppEnabledExtensionNames: UnsafePointer<UnsafePointer<CChar>?>!,
+        pEnabledFeatures: UnsafePointer<VkPhysicalDeviceFeatures>?
+    ) -> VkDeviceCreateInfo {
+        return VkDeviceCreateInfo(
+            sType: VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO,
+            pNext: nil,
+            flags: flags,
+            queueCreateInfoCount: queueCreateInfoCount,
+            pQueueCreateInfos: pQueueCreateInfos,
+            enabledLayerCount: enabledLayerCount,
+            ppEnabledLayerNames: ppEnabledLayerNames,
+            enabledExtensionCount: enabledExtensionCount,
+            ppEnabledExtensionNames: ppEnabledExtensionNames,
+            pEnabledFeatures: pEnabledFeatures
+        )
+    }
+}

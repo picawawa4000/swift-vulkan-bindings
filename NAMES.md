@@ -95,7 +95,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkCreateDescriptorPool` -> unwrapped
 - `vkCreateDescriptorSetLayout` -> unwrapped
 - `vkCreateDescriptorUpdateTemplate` -> unwrapped
-- `vkCreateDevice` -> unwrapped
+- `vkCreateDevice` -> `VulkanPhysicalDevice.createDevice(flags:queueCreateInfos:enabledLayers:enabledExtensions:enabledFeatures:)`
 - `vkCreateEvent` -> unwrapped
 - `vkCreateFence` -> unwrapped
 - `vkCreateFramebuffer` -> unwrapped
@@ -118,7 +118,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkDestroyDescriptorPool` -> unwrapped
 - `vkDestroyDescriptorSetLayout` -> unwrapped
 - `vkDestroyDescriptorUpdateTemplate` -> unwrapped
-- `vkDestroyDevice` -> unwrapped
+- `vkDestroyDevice` -> `VulkanOwnedDevice.deinit`
 - `vkDestroyEvent` -> unwrapped
 - `vkDestroyFence` -> unwrapped
 - `vkDestroyFramebuffer` -> unwrapped
@@ -135,7 +135,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkDestroySamplerYcbcrConversion` -> unwrapped
 - `vkDestroySemaphore` -> unwrapped
 - `vkDestroyShaderModule` -> unwrapped
-- `vkDeviceWaitIdle` -> unwrapped
+- `vkDeviceWaitIdle` -> `VulkanDevice.waitIdle()`
 - `vkEndCommandBuffer` -> unwrapped
 - `vkEnumerateDeviceExtensionProperties` -> `VulkanPhysicalDevice.enumerateDeviceExtensionProperties()`
 - `vkEnumerateDeviceLayerProperties` -> unwrapped
@@ -160,7 +160,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkGetDeviceMemoryCommitment` -> unwrapped
 - `vkGetDeviceMemoryOpaqueCaptureAddress` -> unwrapped
 - `vkGetDeviceProcAddr` -> unwrapped
-- `vkGetDeviceQueue` -> unwrapped
+- `vkGetDeviceQueue` -> `VulkanDevice.getQueue(familyIndex:queueIndex:)`
 - `vkGetEventStatus` -> unwrapped
 - `vkGetFenceStatus` -> unwrapped
 - `vkGetImageMemoryRequirements` -> unwrapped
@@ -171,12 +171,12 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkGetPhysicalDeviceExternalFenceProperties` -> unwrapped
 - `vkGetPhysicalDeviceExternalSemaphoreProperties` -> unwrapped
 - `vkGetPhysicalDeviceFeatures` -> `VulkanPhysicalDevice.getFeatures()`
-- `vkGetPhysicalDeviceFormatProperties` -> unwrapped
-- `vkGetPhysicalDeviceImageFormatProperties` -> unwrapped
-- `vkGetPhysicalDeviceMemoryProperties` -> unwrapped
+- `vkGetPhysicalDeviceFormatProperties` -> `VulkanPhysicalDevice.getFormatProperties(format:)`
+- `vkGetPhysicalDeviceImageFormatProperties` -> `VulkanPhysicalDevice.getImageFormatProperties(format:type:tiling:usage:flags:)`
+- `vkGetPhysicalDeviceMemoryProperties` -> `VulkanPhysicalDevice.getMemoryProperties()`
 - `vkGetPhysicalDeviceProperties` -> `VulkanPhysicalDevice.getProperties()`
 - `vkGetPhysicalDeviceQueueFamilyProperties` -> `VulkanPhysicalDevice.getQueueFamilyProperties()`
-- `vkGetPhysicalDeviceSparseImageFormatProperties` -> unwrapped
+- `vkGetPhysicalDeviceSparseImageFormatProperties` -> `VulkanPhysicalDevice.getSparseImageFormatProperties(format:type:samples:usage:tiling:)`
 - `vkGetPhysicalDeviceToolProperties` -> unwrapped
 - `vkGetPipelineCacheData` -> unwrapped
 - `vkGetPrivateData` -> unwrapped
