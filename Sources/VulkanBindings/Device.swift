@@ -187,7 +187,13 @@ public extension VulkanDevice {
     }
 }
 
-public struct VulkanUnownedDevice {}
+public struct VulkanUnownedDevice: VulkanDevice {
+    public let device: VkDevice
+
+    public init(device: VkDevice) {
+        self.device = device
+    }
+}
 
 public final class VulkanOwnedDevice: VulkanDevice {
     public let device: VkDevice

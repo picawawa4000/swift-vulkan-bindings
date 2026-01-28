@@ -10,18 +10,19 @@ This document is not to be interpreted as a checklist of types that must be wrap
 
 ## Functions
 
-- `vkAllocateCommandBuffers` -> unwrapped
+- `vkAcquireNextImageKHR` -> `VulkanDevice.acquireNextImage(from:timeout:semaphore:fence:)`
+- `vkAllocateCommandBuffers` -> `VulkanDevice.allocateCommandBuffers(from:level:count:)`
 - `vkAllocateDescriptorSets` -> unwrapped
-- `vkAllocateMemory` -> unwrapped
-- `vkBeginCommandBuffer` -> unwrapped
-- `vkBindBufferMemory` -> unwrapped
+- `vkAllocateMemory` -> `VulkanDevice.allocateMemory(_:)`
+- `vkBeginCommandBuffer` -> `VulkanCommandBuffer.begin(flags:inheritanceInfo:)`
+- `vkBindBufferMemory` -> `VulkanDevice.bindBufferMemory(buffer:memory:offset:)`
 - `vkBindImageMemory` -> unwrapped
 - `vkCmdBeginQuery` -> unwrapped
 - `vkCmdBeginRendering` -> unwrapped
-- `vkCmdBeginRenderPass` -> unwrapped
+- `vkCmdBeginRenderPass` -> `VulkanCommandBuffer.beginRenderPass(renderPassBeginInfo:contents:)`
 - `vkCmdBindDescriptorSets` -> unwrapped
 - `vkCmdBindIndexBuffer` -> unwrapped
-- `vkCmdBindPipeline` -> unwrapped
+- `vkCmdBindPipeline` -> `VulkanCommandBuffer.bindPipeline(bindPoint:pipeline:)`
 - `vkCmdBindVertexBuffers` -> unwrapped
 - `vkCmdBlitImage` -> unwrapped
 - `vkCmdClearAttachments` -> unwrapped
@@ -35,7 +36,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkCmdDispatch` -> unwrapped
 - `vkCmdDispatchBase` -> unwrapped
 - `vkCmdDispatchIndirect` -> unwrapped
-- `vkCmdDraw` -> unwrapped
+- `vkCmdDraw` -> `VulkanCommandBuffer.draw(vertexCount:instanceCount:firstVertex:firstInstance:)`
 - `vkCmdDrawIndexed` -> unwrapped
 - `vkCmdDrawIndexedIndirect` -> unwrapped
 - `vkCmdDrawIndexedIndirectCount` -> unwrapped
@@ -43,7 +44,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkCmdDrawIndirectCount` -> unwrapped
 - `vkCmdEndQuery` -> unwrapped
 - `vkCmdEndRendering` -> unwrapped
-- `vkCmdEndRenderPass` -> unwrapped
+- `vkCmdEndRenderPass` -> `VulkanCommandBuffer.endRenderPass()`
 - `vkCmdExecuteCommands` -> unwrapped
 - `vkCmdFillBuffer` -> unwrapped
 - `vkCmdNextSubpass` -> unwrapped
@@ -73,14 +74,14 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkCmdSetRasterizerDiscardEnable` -> unwrapped
 - `vkCmdSetRenderingAttachmentLocations` -> unwrapped
 - `vkCmdSetRenderingInputAttachmentIndices` -> unwrapped
-- `vkCmdSetScissor` -> unwrapped
+- `vkCmdSetScissor` -> `VulkanCommandBuffer.setScissors(_:)`
 - `vkCmdSetScissorWithCount` -> unwrapped
 - `vkCmdSetStencilCompareMask` -> unwrapped
 - `vkCmdSetStencilOp` -> unwrapped
 - `vkCmdSetStencilReference` -> unwrapped
 - `vkCmdSetStencilTestEnable` -> unwrapped
 - `vkCmdSetStencilWriteMask` -> unwrapped
-- `vkCmdSetViewport` -> unwrapped
+- `vkCmdSetViewport` -> `VulkanCommandBuffer.setViewports(_:)`
 - `vkCmdSetViewportWithCount` -> unwrapped
 - `vkCmdUpdateBuffer` -> unwrapped
 - `vkCmdWaitEvents` -> unwrapped
@@ -88,55 +89,57 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkCopyImageToImage` -> unwrapped
 - `vkCopyImageToMemory` -> unwrapped
 - `vkCopyMemoryToImage` -> unwrapped
-- `vkCreateBuffer` -> unwrapped
+- `vkCreateBuffer` -> `VulkanDevice.createBuffer(_:)`
 - `vkCreateBufferView` -> unwrapped
-- `vkCreateCommandPool` -> unwrapped
+- `vkCreateCommandPool` -> `VulkanDevice.createCommandPool(flags:queueFamilyIndex:)`
 - `vkCreateComputePipelines` -> unwrapped
 - `vkCreateDescriptorPool` -> unwrapped
 - `vkCreateDescriptorSetLayout` -> unwrapped
 - `vkCreateDescriptorUpdateTemplate` -> unwrapped
 - `vkCreateDevice` -> `VulkanPhysicalDevice.createDevice(flags:queueCreateInfos:enabledLayers:enabledExtensions:enabledFeatures:)`
 - `vkCreateEvent` -> unwrapped
-- `vkCreateFence` -> unwrapped
-- `vkCreateFramebuffer` -> unwrapped
-- `vkCreateGraphicsPipelines` -> unwrapped
+- `vkCreateFence` -> `VulkanDevice.createFence(flags:)`
+- `vkCreateFramebuffer` -> `VulkanDevice.createFramebuffer(_:)`
+- `vkCreateGraphicsPipelines` -> `VulkanDevice.createGraphicsPipeline(cache:createInfo:)`
 - `vkCreateImage` -> unwrapped
-- `vkCreateImageView` -> unwrapped
+- `vkCreateImageView` -> `VulkanDevice.createImageView(_:)`
 - `vkCreateInstance` -> `VulkanOwnedInstance.init(flags:enabledLayers:enabledExtensions:)`, `VulkanOwnedInstance.init(flags:enabledLayers:enabledExtensions:appName:appVersion:engineName:engineVersion:apiVersion:)`
 - `vkCreatePipelineCache` -> unwrapped
-- `vkCreatePipelineLayout` -> unwrapped
+- `vkCreatePipelineLayout` -> `VulkanDevice.createPipelineLayout(_:)`
 - `vkCreatePrivateDataSlot` -> unwrapped
 - `vkCreateQueryPool` -> unwrapped
-- `vkCreateRenderPass` -> unwrapped
+- `vkCreateRenderPass` -> `VulkanDevice.createRenderPass(_:)`
 - `vkCreateSampler` -> unwrapped
 - `vkCreateSamplerYcbcrConversion` -> unwrapped
-- `vkCreateSemaphore` -> unwrapped
-- `vkCreateShaderModule` -> unwrapped
-- `vkDestroyBuffer` -> unwrapped
+- `vkCreateSemaphore` -> `VulkanDevice.createSemaphore(flags:)`
+- `vkCreateShaderModule` -> `VulkanDevice.createShaderModule(code:flags:)`
+- `vkCreateSwapchainKHR` -> `VulkanDevice.createSwapchain(_:)`
+- `vkDestroyBuffer` -> `VulkanOwnedBuffer.deinit`
 - `vkDestroyBufferView` -> unwrapped
-- `vkDestroyCommandPool` -> unwrapped
+- `vkDestroyCommandPool` -> `VulkanOwnedCommandPool.deinit`
 - `vkDestroyDescriptorPool` -> unwrapped
 - `vkDestroyDescriptorSetLayout` -> unwrapped
 - `vkDestroyDescriptorUpdateTemplate` -> unwrapped
 - `vkDestroyDevice` -> `VulkanOwnedDevice.deinit`
 - `vkDestroyEvent` -> unwrapped
-- `vkDestroyFence` -> unwrapped
-- `vkDestroyFramebuffer` -> unwrapped
+- `vkDestroyFence` -> `VulkanOwnedFence.deinit`
+- `vkDestroyFramebuffer` -> `VulkanOwnedFramebuffer.deinit`
 - `vkDestroyImage` -> unwrapped
-- `vkDestroyImageView` -> unwrapped
+- `vkDestroyImageView` -> `VulkanOwnedImageView.deinit`
 - `vkDestroyInstance` -> `VulkanOwnedInstance.deinit`
-- `vkDestroyPipeline` -> unwrapped
+- `vkDestroyPipeline` -> `VulkanOwnedPipeline.deinit`
 - `vkDestroyPipelineCache` -> unwrapped
-- `vkDestroyPipelineLayout` -> unwrapped
+- `vkDestroyPipelineLayout` -> `VulkanOwnedPipelineLayout.deinit`
 - `vkDestroyPrivateDataSlot` -> unwrapped
 - `vkDestroyQueryPool` -> unwrapped
-- `vkDestroyRenderPass` -> unwrapped
+- `vkDestroyRenderPass` -> `VulkanOwnedRenderPass.deinit`
 - `vkDestroySampler` -> unwrapped
 - `vkDestroySamplerYcbcrConversion` -> unwrapped
-- `vkDestroySemaphore` -> unwrapped
-- `vkDestroyShaderModule` -> unwrapped
+- `vkDestroySemaphore` -> `VulkanOwnedSemaphore.deinit`
+- `vkDestroyShaderModule` -> `VulkanOwnedShaderModule.deinit`
+- `vkDestroySwapchainKHR` -> `VulkanOwnedSwapchain.deinit`
 - `vkDeviceWaitIdle` -> `VulkanDevice.waitIdle()`
-- `vkEndCommandBuffer` -> unwrapped
+- `vkEndCommandBuffer` -> `VulkanCommandBuffer.end()`
 - `vkEnumerateDeviceExtensionProperties` -> `VulkanPhysicalDevice.enumerateDeviceExtensionProperties()`
 - `vkEnumerateDeviceLayerProperties` -> unwrapped
 - `vkEnumerateInstanceExtensionProperties` -> `VulkanFreeFunctions.enumerateInstanceExtensionProperties(forLayer:)`
@@ -144,12 +147,12 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkEnumerateInstanceVersion` -> unwrapped
 - `vkEnumeratePhysicalDeviceGroups` -> unwrapped
 - `vkEnumeratePhysicalDevices` -> `VulkanInstance.enumeratePhysicalDevices()`
-- `vkFlushMappedMemoryRanges` -> unwrapped
-- `vkFreeCommandBuffers` -> unwrapped
+- `vkFlushMappedMemoryRanges` -> `VulkanDevice.flushMappedMemoryRanges(_:)`
+- `vkFreeCommandBuffers` -> `VulkanDevice.freeCommandBuffers(from:commandBuffers:)`
 - `vkFreeDescriptorSets` -> unwrapped
-- `vkFreeMemory` -> unwrapped
+- `vkFreeMemory` -> `VulkanOwnedDeviceMemory.deinit`
 - `vkGetBufferDeviceAddress` -> unwrapped
-- `vkGetBufferMemoryRequirements` -> unwrapped
+- `vkGetBufferMemoryRequirements` -> `VulkanDevice.getBufferMemoryRequirements(_:)`
 - `vkGetBufferOpaqueCaptureAddress` -> unwrapped
 - `vkGetDescriptorSetLayoutSupport` -> unwrapped
 - `vkDeviceBufferMemoryRequirements` -> unwrapped
@@ -177,6 +180,10 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkGetPhysicalDeviceProperties` -> `VulkanPhysicalDevice.getProperties()`
 - `vkGetPhysicalDeviceQueueFamilyProperties` -> `VulkanPhysicalDevice.getQueueFamilyProperties()`
 - `vkGetPhysicalDeviceSparseImageFormatProperties` -> `VulkanPhysicalDevice.getSparseImageFormatProperties(format:type:samples:usage:tiling:)`
+- `vkGetPhysicalDeviceSurfaceCapabilitiesKHR` -> `VulkanPhysicalDevice.getSurfaceCapabilities(surface:)`
+- `vkGetPhysicalDeviceSurfaceFormatsKHR` -> `VulkanPhysicalDevice.getSurfaceFormats(surface:)`
+- `vkGetPhysicalDeviceSurfacePresentModesKHR` -> `VulkanPhysicalDevice.getSurfacePresentModes(surface:)`
+- `vkGetPhysicalDeviceSurfaceSupportKHR` -> `VulkanPhysicalDevice.getSurfaceSupport(surface:queueFamilyIndex:)`
 - `vkGetPhysicalDeviceToolProperties` -> unwrapped
 - `vkGetPipelineCacheData` -> unwrapped
 - `vkGetPrivateData` -> unwrapped
@@ -184,27 +191,29 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkGetRenderAreaGranularity` -> unwrapped
 - `vkGetRenderingAreaGranularity` -> unwrapped
 - `vkGetSemaphoreCounterValue` -> unwrapped
-- `vkInvalidateMappedMemoryRanges` -> unwrapped
-- `vkMapMemory` -> unwrapped
+- `vkGetSwapchainImagesKHR` -> `VulkanDevice.getSwapchainImages(_:)`
+- `vkInvalidateMappedMemoryRanges` -> `VulkanDevice.invalidateMappedMemoryRanges(_:)`
+- `vkMapMemory` -> `VulkanDevice.mapMemory(_:offset:size:flags:)`
 - `vkMergePipelineCaches` -> unwrapped
 - `vkQueueBindSparse` -> unwrapped
-- `vkQueueSubmit` -> unwrapped
+- `vkQueuePresentKHR` -> `VulkanDevice.present(queue:presentInfo:)`
+- `vkQueueSubmit` -> `VulkanDevice.submit(queue:submits:fence:)`
 - `vkQueueWaitIdle` -> unwrapped
 - `vkResetCommandBuffer` -> unwrapped
 - `vkResetCommandPool` -> unwrapped
 - `vkResetDescriptorPool` -> unwrapped
 - `vkResetEvent` -> unwrapped
-- `vkResetFences` -> unwrapped
+- `vkResetFences` -> `VulkanDevice.resetFences(_:)`
 - `vkResetQueryPool` -> unwrapped
 - `vkSetEvent` -> unwrapped
 - `vkSetPrivateData` -> unwrapped
 - `vkSignalSemaphore` -> unwrapped
 - `vkTransitionImageLayout` -> unwrapped
 - `vkTrimCommandPool` -> unwrapped
-- `vkUnmapMemory` -> unwrapped
+- `vkUnmapMemory` -> `VulkanDevice.unmapMemory(_:)`
 - `vkUpdateDescriptorSets` -> unwrapped
 - `vkUpdateDescriptorSetWithTemplate` -> unwrapped
-- `vkWaitForFences` -> unwrapped
+- `vkWaitForFences` -> `VulkanDevice.waitForFences(_:waitAll:timeout:)`
 - `vkWaitSemaphores` -> unwrapped
 
 ## Structs
@@ -213,37 +222,43 @@ It is unlikely that any structs not on the list below will need to be wrapped, a
 
 ### Object Handles
 
-- `VkBuffer` -> unwrapped
+- `VkBuffer` -> `VulkanOwnedBuffer`
 - `VkBufferView` -> unwrapped
-- `VkCommandBuffer` -> unwrapped
-- `VkCommandPool` -> unwrapped
+- `VkCommandBuffer` -> `VulkanCommandBuffer`
+- `VkCommandPool` -> `VulkanOwnedCommandPool`
 - `VkDescriptorPool` -> unwrapped
 - `VkDescriptorSet` -> unwrapped
 - `VkDescriptorSetLayout` -> unwrapped
 - `VkDescriptorUpdateTemplate` -> unwrapped
 - `VkDevice` -> `VulkanDevice` (`VulkanOwnedDevice`, `VulkanUnownedDevice`)
-- `VkDeviceMemory` -> unwrapped
+- `VkDeviceMemory` -> `VulkanOwnedDeviceMemory`
 - `VkEvent` -> unwrapped
-- `VkFence` -> unwrapped
-- `VkFramebuffer` -> unwrapped
+- `VkFence` -> `VulkanOwnedFence`
+- `VkFramebuffer` -> `VulkanOwnedFramebuffer`
 - `VkImage` -> unwrapped
-- `VkImageView` -> unwrapped
+- `VkImageView` -> `VulkanOwnedImageView`
 - `VkInstance` -> `VulkanInstance` (`VulkanOwnedInstance`, `VulkanUnownedInstance`)
 - `VkPhysicalDevice` -> `VulkanPhysicalDevice`
-- `VkPipeline` -> unwrapped
+- `VkPipeline` -> `VulkanOwnedPipeline`
 - `VkPipelineCache` -> unwrapped
-- `VkPipelineLayout` -> unwrapped
+- `VkPipelineLayout` -> `VulkanOwnedPipelineLayout`
 - `VkPrivateDataSlot` -> unwrapped
 - `VkQueryPool` -> unwrapped
 - `VkQueue` -> unwrapped
-- `VkRenderPass` -> unwrapped
+- `VkRenderPass` -> `VulkanOwnedRenderPass`
 - `VkSampler` -> unwrapped
 - `VkSamplerYcbcrConversion` -> unwrapped
-- `VkSemaphore` -> unwrapped
-- `VkShaderModule` -> unwrapped
+- `VkSemaphore` -> `VulkanOwnedSemaphore`
+- `VkShaderModule` -> `VulkanOwnedShaderModule`
+- `VkSurfaceKHR` -> `VulkanOwnedSurface` (`VulkanUnownedSurface`)
+- `VkSwapchainKHR` -> `VulkanOwnedSwapchain`
 
 ## Flags
 
 Flags are wrapped using types that conform to `OptionSet`.
 
 - `VkInstanceCreateFlags` -> `VulkanInstanceCreateFlags`
+- `VkCommandPoolCreateFlags` -> `VulkanCommandPoolCreateFlags`
+- `VkDeviceCreateFlags` -> `VulkanDeviceCreateFlags`
+- `VkFenceCreateFlags` -> `VulkanFenceCreateFlags`
+- `VkSemaphoreCreateFlags` -> `VulkanSemaphoreCreateFlags`
