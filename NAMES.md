@@ -16,7 +16,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkAllocateMemory` -> `VulkanDevice.allocateMemory(_:)`
 - `vkBeginCommandBuffer` -> `VulkanCommandBuffer.begin(flags:inheritanceInfo:)`
 - `vkBindBufferMemory` -> `VulkanDevice.bindBufferMemory(buffer:memory:offset:)`
-- `vkBindImageMemory` -> unwrapped
+- `vkBindImageMemory` -> `VulkanDevice.bindImageMemory(image:memory:offset:)`
 - `vkCmdBeginQuery` -> unwrapped
 - `vkCmdBeginRendering` -> unwrapped
 - `vkCmdBeginRenderPass` -> `VulkanCommandBuffer.beginRenderPass(renderPassBeginInfo:contents:)`
@@ -101,7 +101,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkCreateFence` -> `VulkanDevice.createFence(flags:)`
 - `vkCreateFramebuffer` -> `VulkanDevice.createFramebuffer(_:)`
 - `vkCreateGraphicsPipelines` -> `VulkanDevice.createGraphicsPipeline(cache:createInfo:)`
-- `vkCreateImage` -> unwrapped
+- `vkCreateImage` -> `VulkanDevice.createImage(_:)`
 - `vkCreateImageView` -> `VulkanDevice.createImageView(_:)`
 - `vkCreateInstance` -> `VulkanOwnedInstance.init(flags:enabledLayers:enabledExtensions:)`, `VulkanOwnedInstance.init(flags:enabledLayers:enabledExtensions:appName:appVersion:engineName:engineVersion:apiVersion:)`
 - `vkCreatePipelineCache` -> unwrapped
@@ -124,7 +124,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkDestroyEvent` -> unwrapped
 - `vkDestroyFence` -> `VulkanOwnedFence.deinit`
 - `vkDestroyFramebuffer` -> `VulkanOwnedFramebuffer.deinit`
-- `vkDestroyImage` -> unwrapped
+- `vkDestroyImage` -> `VulkanOwnedImage.deinit`
 - `vkDestroyImageView` -> `VulkanOwnedImageView.deinit`
 - `vkDestroyInstance` -> `VulkanOwnedInstance.deinit`
 - `vkDestroyPipeline` -> `VulkanOwnedPipeline.deinit`
@@ -166,7 +166,7 @@ This document is not to be interpreted as a checklist of types that must be wrap
 - `vkGetDeviceQueue` -> `VulkanDevice.getQueue(familyIndex:queueIndex:)`
 - `vkGetEventStatus` -> unwrapped
 - `vkGetFenceStatus` -> unwrapped
-- `vkGetImageMemoryRequirements` -> unwrapped
+- `vkGetImageMemoryRequirements` -> `VulkanDevice.getImageMemoryRequirements(_:)`
 - `vkGetImageSparseMemoryRequirements` -> unwrapped
 - `vkGetImageSubresourceLayout` -> unwrapped
 - `vkGetInstanceProcAddr` -> unwrapped
@@ -235,7 +235,7 @@ It is unlikely that any structs not on the list below will need to be wrapped, a
 - `VkEvent` -> unwrapped
 - `VkFence` -> `VulkanOwnedFence`
 - `VkFramebuffer` -> `VulkanOwnedFramebuffer`
-- `VkImage` -> unwrapped
+- `VkImage` -> `VulkanOwnedImage`
 - `VkImageView` -> `VulkanOwnedImageView`
 - `VkInstance` -> `VulkanInstance` (`VulkanOwnedInstance`, `VulkanUnownedInstance`)
 - `VkPhysicalDevice` -> `VulkanPhysicalDevice`

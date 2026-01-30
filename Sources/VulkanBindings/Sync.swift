@@ -60,7 +60,8 @@ public extension VulkanDevice {
     ///   - timeout: The timeout in nanoseconds.
     /// - Throws: Any error raised by Vulkan.
     func waitForFences(_ fences: [VkFence], waitAll: Bool = true, timeout: UInt64 = UInt64.max) throws {
-        try fences.withUnsafeBufferPointer { buffer in
+        let optionalFences = fences.map { Optional($0) }
+        try optionalFences.withUnsafeBufferPointer { buffer in
             try check(vkWaitForFences(self.device, UInt32(buffer.count), buffer.baseAddress, waitAll ? VK_TRUE : VK_FALSE, timeout))
         }
     }
@@ -69,7 +70,8 @@ public extension VulkanDevice {
     /// - Parameter fences: The fences to reset.
     /// - Throws: Any error raised by Vulkan.
     func resetFences(_ fences: [VkFence]) throws {
-        try fences.withUnsafeBufferPointer { buffer in
+        let optionalFences = fences.map { Optional($0) }
+        try optionalFences.withUnsafeBufferPointer { buffer in
             try check(vkResetFences(self.device, UInt32(buffer.count), buffer.baseAddress))
         }
     }

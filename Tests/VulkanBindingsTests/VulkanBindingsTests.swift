@@ -20,7 +20,7 @@ import Vulkan
         enabledExtensions: [VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME]
     )
 #else
-    let instance = try OwnedVulkanInstance(
+    let instance = try VulkanOwnedInstance(
         flags: [],
         enabledLayers: validationLayers,
         enabledExtensions: []

@@ -47,6 +47,7 @@ public final class VulkanOwnedInstance: VulkanInstance {
     ///   - enabledLayers: The enabled validation layers.
     ///   - enabledExtensions: The enabled extensions.
     /// - Throws: Any error caused by instance initialisation.
+    @available(*, deprecated, message: "This constructor sets the Vulkan API version to 1.0, which is not the desired behaviour in most cases.")
     public init(flags: VulkanInstanceCreateFlags, enabledLayers: [String], enabledExtensions: [String]) throws {
         var instance: VkInstance?
         try withCStringsPointerAndSize(enabledLayers) { layerPtr, layerCount in

@@ -6,3 +6,6 @@ DerivedData/
 .swiftpm/configuration/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .netrc
+# Where I'm putting shader binaries for the tests
+# (these are elementary)
+ex-shaders

@@ -135,7 +135,7 @@ public extension VulkanDevice {
     ///   - commandPool: The command pool the command buffers were allocated from.
     ///   - commandBuffers: The command buffers to free.
     func freeCommandBuffers(from commandPool: VulkanOwnedCommandPool, commandBuffers: [VulkanCommandBuffer]) {
-        let rawBuffers = commandBuffers.map { $0.commandBuffer }
+        let rawBuffers = commandBuffers.map { Optional($0.commandBuffer) }
         rawBuffers.withUnsafeBufferPointer { buffer in
             vkFreeCommandBuffers(self.device, commandPool.commandPool, UInt32(buffer.count), buffer.baseAddress)
         }

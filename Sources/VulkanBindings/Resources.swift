@@ -45,6 +45,21 @@ public final class VulkanOwnedImageView {
     }
 }
 
+/// Represents an owned Vulkan image.
+public final class VulkanOwnedImage {
+    public let image: VkImage
+    private let device: VkDevice
+
+    public init(device: VkDevice, image: VkImage) {
+        self.device = device
+        self.image = image
+    }
+
+    deinit {
+        vkDestroyImage(self.device, self.image, nil)
+    }
+}
+
 public extension VulkanDevice {
     /// Create a buffer.
     /// - Parameter createInfo: The buffer creation info.
@@ -56,12 +71,31 @@ public extension VulkanDevice {
         return VulkanOwnedBuffer(device: self.device, buffer: buffer!)
     }
 
+    /// Create an image.
+    /// - Parameter createInfo: The image creation info.
+    /// - Throws: Any error raised by Vulkan.
+    /// - Returns: An owning handle to the created image.
+    func createImage(_ createInfo: inout VkImageCreateInfo) throws -> VulkanOwnedImage {
+        var image: VkImage?
+        try check(vkCreateImage(self.device, &createInfo, nil, &image))
+        return VulkanOwnedImage(device: self.device, image: image!)
+    }
+
     /// Get buffer memory requirements.
     /// - Parameter buffer: The buffer to query.
     /// - Returns: The buffer memory requirements.
     func getBufferMemoryRequirements(_ buffer: VulkanOwnedBuffer) -> VkMemoryRequirements {
         var requirements = VkMemoryRequirements()
         vkGetBufferMemoryRequirements(self.device, buffer.buffer, &requirements)
+        return requirements
+    }
+
+    /// Get image memory requirements.
+    /// - Parameter image: The image to query.
+    /// - Returns: The image memory requirements.
+    func getImageMemoryRequirements(_ image: VulkanOwnedImage) -> VkMemoryRequirements {
+        var requirements = VkMemoryRequirements()
+        vkGetImageMemoryRequirements(self.device, image.image, &requirements)
         return requirements
     }
 
@@ -83,6 +117,16 @@ public extension VulkanDevice {
     /// - Throws: Any error raised by Vulkan.
     func bindBufferMemory(buffer: VulkanOwnedBuffer, memory: VulkanOwnedDeviceMemory, offset: VkDeviceSize = 0) throws {
         try check(vkBindBufferMemory(self.device, buffer.buffer, memory.memory, offset))
+    }
+
+    /// Bind image memory.
+    /// - Parameters:
+    ///   - image: The image to bind.
+    ///   - memory: The memory to bind.
+    ///   - offset: The offset into the memory allocation.
+    /// - Throws: Any error raised by Vulkan.
+    func bindImageMemory(image: VulkanOwnedImage, memory: VulkanOwnedDeviceMemory, offset: VkDeviceSize = 0) throws {
+        try check(vkBindImageMemory(self.device, image.image, memory.memory, offset))
     }
 
     /// Map device memory.

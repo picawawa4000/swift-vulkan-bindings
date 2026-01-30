@@ -5,6 +5,31 @@ enum VulkanError: Error {
     case result(VkResult)
 }
 
+/// Represents a Vulkan API version with helpers to compute raw values.
+public struct VulkanAPIVersion: Sendable {
+    public let variant: UInt32
+    public let major: UInt32
+    public let minor: UInt32
+    public let patch: UInt32
+
+    public init(variant: UInt32 = 0, major: UInt32, minor: UInt32, patch: UInt32 = 0) {
+        self.variant = variant
+        self.major = major
+        self.minor = minor
+        self.patch = patch
+    }
+
+    /// Raw Vulkan API version value, equivalent to VK_MAKE_API_VERSION.
+    public var rawValue: UInt32 {
+        return (variant << 29) | (major << 22) | (minor << 12) | patch
+    }
+
+    public static let v1_0 = VulkanAPIVersion(variant: 0, major: 1, minor: 0, patch: 0)
+    public static let v1_1 = VulkanAPIVersion(variant: 0, major: 1, minor: 1, patch: 0)
+    public static let v1_2 = VulkanAPIVersion(variant: 0, major: 1, minor: 2, patch: 0)
+    public static let v1_3 = VulkanAPIVersion(variant: 0, major: 1, minor: 3, patch: 0)
+}
+
 @inline(__always) func check(_ result: VkResult) throws {
     if result != VK_SUCCESS {
         throw VulkanError.result(result)

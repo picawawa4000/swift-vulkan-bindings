@@ -519,6 +519,58 @@ public extension VkBufferCreateInfo {
     }
 }
 
+public extension VkImageCreateInfo {
+    /// Creates a new `VkImageCreateInfo`.
+    /// - Parameters:
+    ///   - flags: The flags to use to create the image.
+    ///   - imageType: The image type.
+    ///   - format: The image format.
+    ///   - extent: The image extent.
+    ///   - mipLevels: The number of mip levels.
+    ///   - arrayLayers: The number of array layers.
+    ///   - samples: The sample count.
+    ///   - tiling: The image tiling.
+    ///   - usage: The intended image usage.
+    ///   - sharingMode: The sharing mode for the image.
+    ///   - queueFamilyIndexCount: The number of queue family indices.
+    ///   - pQueueFamilyIndices: Pointer to queue family indices.
+    ///   - initialLayout: The initial image layout.
+    /// - Returns: A `VkImageCreateInfo` structure encoding all of the above information.
+    static func create(
+        flags: VkImageCreateFlags,
+        imageType: VkImageType,
+        format: VkFormat,
+        extent: VkExtent3D,
+        mipLevels: UInt32,
+        arrayLayers: UInt32,
+        samples: VkSampleCountFlagBits,
+        tiling: VkImageTiling,
+        usage: VkImageUsageFlags,
+        sharingMode: VkSharingMode,
+        queueFamilyIndexCount: UInt32,
+        pQueueFamilyIndices: UnsafePointer<UInt32>?,
+        initialLayout: VkImageLayout
+    ) -> VkImageCreateInfo {
+        return VkImageCreateInfo(
+            sType: VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO,
+            pNext: nil,
+            flags: flags,
+            imageType: imageType,
+            format: format,
+            extent: extent,
+            mipLevels: mipLevels,
+            arrayLayers: arrayLayers,
+            samples: samples,
+            tiling: tiling,
+            usage: usage,
+            sharingMode: sharingMode,
+            queueFamilyIndexCount: queueFamilyIndexCount,
+            pQueueFamilyIndices: pQueueFamilyIndices,
+            initialLayout: initialLayout
+        )
+    }
+}
+
 public extension VkMemoryAllocateInfo {
     /// Creates a new `VkMemoryAllocateInfo`.
     /// - Parameters:
