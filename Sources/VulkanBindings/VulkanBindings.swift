@@ -36,6 +36,13 @@ public struct VulkanAPIVersion: Sendable {
     }
 }
 
+// Public-API alias for `check` with the same behaviour; that is, throws if the result is not VK_SUCCESS.
+@inline(__always) public func vulkanResultCheck(_ result: VkResult) throws {
+    if result != VK_SUCCESS {
+        throw VulkanError.result(result)
+    }
+}
+
 final class OwnedCString {
     let rawString: UnsafePointer<CChar>
 
