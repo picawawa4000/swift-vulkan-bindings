@@ -47,7 +47,7 @@ final class OwnedCString {
     let rawString: UnsafePointer<CChar>
 
     init(_ string: String?) {
-        self.rawString = UnsafePointer<CChar>(strdup(string))
+        self.rawString = UnsafePointer<CChar>(strdup(string ?? ""))
     }
 
     deinit {
