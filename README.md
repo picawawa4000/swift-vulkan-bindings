@@ -12,7 +12,7 @@ To use this library, add the following code to the `dependencies` section of you
 
 If you are writing an executable, you must ensure that the Vulkan dynamic library is in a place where the loader can find it.
 
-This library exposes wrappers in the module `VulkanBindings`. The Vulkan C api is also exposed by this library and can be accessed via the module `Vulkan`.
+This library exposes wrappers in the module `VulkanBindings`. The Vulkan C API is also exposed by this library and can be accessed via the module `Vulkan`.
 
 ## Currently wrapped types
 
